@@ -1,0 +1,7 @@
+credentials.json
+token.json
+my_privkey.txt
+my_pubkey.txt
+sendEmail.txt
+backup
+__pycache__
