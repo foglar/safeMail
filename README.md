@@ -9,7 +9,7 @@
 1. Download the latest version of safeMail from [here][releases] and unzip it.
 2. Download all required libraries with ```pip3 install -r requirements.txt``` (ezgmail, pyperclip, pyinputplus, rich)
 3. Create your own public and private keys by running ```python3 makePublicPrivateKeys.py``` save them in the project folder and name them **my_pubkey.txt** and **my_privkey.txt** (:warning:DON'T SHARE private key with anyone) and send your public key to your friends.
-4. You have to create your email adress at [gmail](https://www.gmail.com) Then go on [this](https://developers.google.com/gmail/api/quickstart/python) pick option **Enable Gmail API** and fill form. After that you should be able to download file **credentials.json** and upload it to the project folder. It contents your gmail authentication key and code, they act like your gmail password, so be carefull with them.
+4. You have to create your email adress at [gmail](https://www.gmail.com) Then go on [this](https://developers.google.com/gmail/api/quickstart/python) page and pick option **Enable Gmail API** and fill form. After that you should be able to download file **credentials.json** and upload it to the project folder. It contents your gmail authentication key and code, they act like your gmail password, so be carefull with them.
 5. Then you can run ```python3 safeMail.py```, first time the window will pop up and askes you for login to your gmail. This app is not verified by Google, so it will try to stop from using it. Just click **advanced settings** and **continue (unsafe)**. (Consider creating new inbox and some new password only for this project)
 6. Now you can read your emails with pressing enter or **v**, terminal will look like this:
 

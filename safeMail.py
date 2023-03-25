@@ -1,7 +1,7 @@
 #! python3
 # safeMail.py - Read and send encrypted emails
 
-# TODO: Add option to pick from multiple keys when writing email
+# TODO: Add option of names with emails
 
 from rich.console import Console
 from datetime import datetime as d
@@ -118,12 +118,14 @@ def main():
         ):
             makeNewKeys()
         # Exit program
-        elif read_or_send.lower().startswith("q") or read_or_send.lower().startswith('quit'):
+        elif read_or_send.lower().startswith("q") or read_or_send.lower().startswith(
+            "quit"
+        ):
             os.system("clear")
             for i in range(11):
                 if os.path.exists(f"cache/email{i}.txt"):
                     os.remove(f"cache/email{i}.txt")
-            if os.path.exists('cache/sendEmail.txt'):
+            if os.path.exists("cache/sendEmail.txt"):
                 os.remove("cache/sendEmail.txt")
             console.print("Cache cleared!", style="bold red")
             console.print("Bye!", style="bold red")
@@ -172,8 +174,21 @@ def readEmail():
 
 
 def sendEmails():
-    recipient = pyip.inputEmail("To: ")
-    publicKey = pyip.inputFilepath("Public key path: ")
+    console.print("Send email", style="bold blue")
+    recipient = pyip.inputMenu(list_Contacts(), numbered=True)
+
+    if recipient == "New contact":
+        recipient = addContact()
+    
+    print("")
+    publicKey = pyip.inputMenu(list_Keys(), numbered=True)
+    
+    if publicKey == "Costume key":
+        publicKey = newPathToKey()
+    else:
+        publicKey = 'keys/'+ publicKey
+
+    print("")
     message = console.input("Message: ")
 
     emailFile = open("cache/sendEmail.txt", "w")
@@ -233,6 +248,45 @@ def makeNewKeys():
     else:
         console.print("Aborting...", style="bold red")
 
+
+def list_Contacts():
+    contacts = []
+    with open("contacts.txt", "r") as f:
+        contacts = f.readlines()
+    contacts = [x.strip() for x in contacts]
+
+    contacts.append("New contact")
+    return contacts
+
+def list_Keys():
+    keys = []
+    keys = os.listdir("keys")
+    keys.append("Costume key")
+    return keys
+
+def addContact():
+    while True:
+        contact = pyip.inputEmail("Email address: ")
+        if contact in list_Contacts():
+            console.print(f"Contact {contact} already exists!", style="bold red")
+        else:
+            with open("contacts.txt", "a") as f:
+                f.write(contact + "\n")
+                f.close()
+                break
+
+    console.print(f"Contact {contact} added!", style="bold green")
+
+def newPathToKey():
+    while True:
+        key = pyip.inputFilepath("Key path: ")
+        if os.path.exists(key):
+            console.print(f"Key {key}!", style="bold green")
+            break
+        else:
+            console.print(f"Path to {key} not exist!", style="bold red")
+    return key
+    
 
 def logo():
     console.print("            __    ___  ___      _ _ ", style="bold cyan")
