@@ -1,5 +1,16 @@
 # safeMail
 
+![Czech](https://img.shields.io/badge/MADE%20IN-CZECH-red?style=for-the-badge)
+![Lines of code](https://img.shields.io/tokei/lines/github/foglar/safeMail?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/foglar/safeMail?style=for-the-badge)
+
+Send encrypted emails from terminal via gmail.
+
+![CodeFactor][codeFactor]
+![GitHub top language](https://img.shields.io/github/languages/top/foglar/safeMail)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/foglar/safeMail)
+![GitHub Repo stars](https://img.shields.io/github/stars/foglar/safeMail?style=social)
+
 ## Quick startguide
 
 :warning: **WARNING** This app is not safe to use if you need security, because it uses student version of RSA encryption, which is not safe to use in real life. It is only for educational purposes, and it is not recommended to use it for real secret communications.
@@ -70,3 +81,4 @@
   |- **README.md** - this file<br/>
 
 [releases]: https://www.github.com/foglar/safeMail/releases
+[codeFactor]: https://www.codefactor.io/repository/github/foglar/safeMail/badge
