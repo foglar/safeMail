@@ -3,9 +3,11 @@
 
 # TODO: Add option of names with emails
 
+from re import sub
 from rich.console import Console
 from datetime import datetime as d
 from pathlib import Path
+import subprocess
 import pyinputplus as pyip
 import os
 import sys
@@ -41,7 +43,7 @@ def main():
                 "To view your emails, press [bold red]ENTER[/bold red] > "
             )
         except KeyboardInterrupt:
-            os.system("/bin/clear")
+            subprocess.call("/bin/clear", shell=False)
             console.print("\nBye!", style="bold red")
             console.print(
                 "More information about program on https://www.github.com/foglar/safeMail/",
@@ -56,7 +58,7 @@ def main():
             or read_or_send.lower().startswith("view")
         ):
             senders, emails, timestamps = readEmails()
-            os.system("clear")
+            subprocess.call("/bin/clear", shell=False)
             for i in range(len(emails)):
                 preview = emails[i][:50].replace("\n", " ")
                 console.print(
@@ -69,7 +71,7 @@ def main():
             "read"
         ):
             emailSender, emailBody, emailTime = readEmail()
-            os.system("clear")
+            subprocess.call("/bin/clear", shell=False)
             console.print(
                 f"Email from : [bold red] {emailSender} [/bold red]\tTime: [bold red] {emailTime} [/bold red]"
             )
@@ -79,13 +81,13 @@ def main():
         elif read_or_send.lower().startswith("s") or read_or_send.lower().startswith(
             "send"
         ):
-            os.system("clear")
+            subprocess.call("/bin/clear", shell=False)
             sendEmails()
         # Help
         elif read_or_send.lower().startswith("h") or read_or_send.lower().startswith(
             "help"
         ):
-            os.system("clear")
+            subprocess.call("/bin/clear", shell=False)
             logo()
             console.print(
                 "Simple tool for safe communication with friends via gmail, messages are encrypted with public key cipher",
@@ -121,7 +123,7 @@ def main():
         elif read_or_send.lower().startswith("q") or read_or_send.lower().startswith(
             "quit"
         ):
-            os.system("/bin/clear")
+            subprocess.call("/bin/clear", shell=False)
             for i in range(11):
                 if os.path.exists(f"cache/email{i}.txt"):
                     os.remove(f"cache/email{i}.txt")
@@ -220,7 +222,7 @@ def encryptEmails(file, key, message):
 
 
 def makeNewKeys():
-    os.system("/bin/clear")
+    subprocess.call("/bin/clear", shell=False)
     console.print(
         "[bold red]WARNING[/bold red]: This will delete your current keys, so you would be unable to read all your previous conversations, are you sure you want to continue? (y/n)",
         style="bold red",
@@ -236,7 +238,7 @@ def makeNewKeys():
         os.remove("my_privkey.txt")
         os.remove("my_pubkey.txt")
         makePublicPrivateKeys.makeKeyFiles("my", 1024)
-        os.system("/bin/clear")
+        subprocess.call("/bin/clear", shell=False)
         console.print(
             "Public key: /keys/my_pubkey.txt, private key: /keys/my_privkey.txt",
             style="bold blue",
