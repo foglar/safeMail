@@ -41,7 +41,7 @@ def main():
                 "To view your emails, press [bold red]ENTER[/bold red] > "
             )
         except KeyboardInterrupt:
-            os.system("clear")
+            os.system("/bin/clear")
             console.print("\nBye!", style="bold red")
             console.print(
                 "More information about program on https://www.github.com/foglar/safeMail/",
@@ -121,7 +121,7 @@ def main():
         elif read_or_send.lower().startswith("q") or read_or_send.lower().startswith(
             "quit"
         ):
-            os.system("clear")
+            os.system("/bin/clear")
             for i in range(11):
                 if os.path.exists(f"cache/email{i}.txt"):
                     os.remove(f"cache/email{i}.txt")
@@ -179,14 +179,14 @@ def sendEmails():
 
     if recipient == "New contact":
         recipient = addContact()
-    
+
     print("")
     publicKey = pyip.inputMenu(list_Keys(), numbered=True)
-    
+
     if publicKey == "Costume key":
         publicKey = newPathToKey()
     else:
-        publicKey = 'keys/'+ publicKey
+        publicKey = "keys/" + publicKey
 
     print("")
     message = console.input("Message: ")
@@ -220,7 +220,7 @@ def encryptEmails(file, key, message):
 
 
 def makeNewKeys():
-    os.system("clear")
+    os.system("/bin/clear")
     console.print(
         "[bold red]WARNING[/bold red]: This will delete your current keys, so you would be unable to read all your previous conversations, are you sure you want to continue? (y/n)",
         style="bold red",
@@ -236,7 +236,7 @@ def makeNewKeys():
         os.remove("my_privkey.txt")
         os.remove("my_pubkey.txt")
         makePublicPrivateKeys.makeKeyFiles("my", 1024)
-        os.system("clear")
+        os.system("/bin/clear")
         console.print(
             "Public key: /keys/my_pubkey.txt, private key: /keys/my_privkey.txt",
             style="bold blue",
@@ -258,11 +258,13 @@ def list_Contacts():
     contacts.append("New contact")
     return contacts
 
+
 def list_Keys():
     keys = []
     keys = os.listdir("keys")
     keys.append("Costume key")
     return keys
+
 
 def addContact():
     while True:
@@ -277,6 +279,7 @@ def addContact():
 
     console.print(f"Contact {contact} added!", style="bold green")
 
+
 def newPathToKey():
     while True:
         key = pyip.inputFilepath("Key path: ")
@@ -286,7 +289,7 @@ def newPathToKey():
         else:
             console.print(f"Path to {key} not exist!", style="bold red")
     return key
-    
+
 
 def logo():
     console.print("            __    ___  ___      _ _ ", style="bold cyan")
