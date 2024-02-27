@@ -299,8 +299,7 @@ def logo():
     console.print(" ___  __ _| |_ ___| .  . | __ _ _| |", style="bold cyan")
     console.print("/ __|/ _` |  _/ _ \ |\/| |/ _` | | |", style="bold cyan")
     console.print("\__ \ (_| | ||  __/ |  | | (_| | | |", style="bold cyan")
-    console.print(
-        "|___/\__,_|_| \___\_|  |_/\__,_|_|_|, by [bold red]foglar[bold red]\n",
+    console.print("|___/\__,_|_| \___\_|  |_/\__,_|_|_|, by [bold red]foglar[bold red]\n",
         style="bold cyan",
     )
 
